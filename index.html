@@ -7,7 +7,7 @@
   <meta name="description" content="Handyman and home repair services in Raleigh, NC and the Triangle. Plumbing, electrical, carpentry, painting, and general repairs. Free estimates, honest pricing, work done right the first time.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,7 +43,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 400;
       font-size: 1.02rem;
       background: var(--bg);
@@ -53,11 +53,12 @@
       line-height: 1.65;
     }
 
-    /* Fraunces carries the headlines. Low wonk keeps it sturdy, not decorative. */
+    /* Archivo throughout. Heavy and tight on headings: plain and sturdy,
+       the way trade signage and tool packaging is set. No display faces. */
     h1, h2, h3, .display {
-      font-family: 'Fraunces', Georgia, serif;
-      font-variation-settings: 'SOFT' 0, 'WONK' 0;
-      letter-spacing: -0.015em;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
     }
 
     /* ─── SHARED ─── */
@@ -74,7 +75,7 @@
       display: flex;
       align-items: center;
       gap: 0.9rem;
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Archivo', sans-serif;
       font-size: 0.76rem;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -85,7 +86,7 @@
 
     .eyebrow::before {
       content: attr(data-n);
-      font-family: 'Fraunces', serif;
+      font-family: 'Archivo', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0;
@@ -101,9 +102,10 @@
     }
 
     .h2 {
-      font-size: clamp(2.1rem, 4.2vw, 3.1rem);
-      font-weight: 600;
-      line-height: 1.1;
+      font-size: clamp(1.95rem, 3.9vw, 2.85rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
       margin-bottom: 1.1rem;
       max-width: 20ch;
     }
@@ -586,8 +588,9 @@
     }
 
     .svc h3 {
-      font-size: 1.32rem;
-      font-weight: 600;
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       margin-bottom: 0.55rem;
     }
 
@@ -869,11 +872,10 @@
     .stars svg { width: 16px; height: 16px; fill: var(--gold); stroke: none; }
 
     .review blockquote {
-      font-family: 'Fraunces', Georgia, serif;
-      font-variation-settings: 'SOFT' 0, 'WONK' 0;
-      font-size: 1.18rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.02rem;
       font-weight: 400;
-      line-height: 1.58;
+      line-height: 1.68;
       color: var(--ink);
       flex: 1;
       margin-bottom: 1.5rem;
