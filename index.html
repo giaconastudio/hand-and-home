@@ -638,6 +638,25 @@
     .work-item:hover .work-cap,
     .work-item:focus-visible .work-cap { opacity: 1; }
 
+    /* Photos past the first batch stay hidden until Load more */
+    .work-item.is-hidden { display: none; }
+
+    .work-more {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .work-more-count {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    .work-more .btn svg { transition: transform 0.25s ease; }
+    .work-more .btn.is-open svg { transform: rotate(180deg); }
+
     /* Placeholder tile shown until real photos are added */
     .work-ph {
       display: flex;
@@ -1348,6 +1367,13 @@
         <p class="lede">Before and after from real jobs around Raleigh and the Triangle. Click any photo to view it full size.</p>
       </div>
       <div class="work-grid reveal" id="workGrid"></div>
+      <div class="work-more" id="workMore" hidden>
+        <button class="btn btn-outline" id="workMoreBtn">
+          <span id="workMoreLabel">Load more</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <span class="work-more-count" id="workMoreCount"></span>
+      </div>
     </div>
   </section>
 
@@ -1403,7 +1429,7 @@
     <div class="container">
       <div class="stats-row">
         <div class="reveal">
-          <div class="stat-n">500<span class="unit">+</span></div>
+          <div class="stat-n">100<span class="unit">+</span></div>
           <div class="stat-label">Jobs completed</div>
         </div>
         <div class="reveal" style="transition-delay:0.08s;">
@@ -1712,12 +1738,42 @@
         return;
       }
 
+      // How many photos show before "Load more"
+      const BATCH = 3;
+
       grid.innerHTML = WORK_PHOTOS.map((p, i) => `
-        <button class="work-item" data-i="${i}" aria-label="View photo: ${p.caption || 'project photo'}">
+        <button class="work-item${i >= BATCH ? ' is-hidden' : ''}" data-i="${i}" aria-label="View photo: ${p.caption || 'project photo'}">
           <img src="${p.src}" alt="${p.caption || ''}" loading="lazy"
                onerror="this.closest('.work-item').style.display='none'">
           ${p.caption ? `<span class="work-cap">${p.caption}</span>` : ''}
         </button>`).join('');
+
+      // Load more / show less
+      (function setupMore() {
+        const wrap  = document.getElementById('workMore');
+        const btn   = document.getElementById('workMoreBtn');
+        const label = document.getElementById('workMoreLabel');
+        const count = document.getElementById('workMoreCount');
+        const hidden = WORK_PHOTOS.length - BATCH;
+        if (!wrap || hidden <= 0) return;
+
+        let expanded = false;
+        count.textContent = `Showing ${BATCH} of ${WORK_PHOTOS.length} projects`;
+        wrap.hidden = false;
+
+        btn.addEventListener('click', () => {
+          expanded = !expanded;
+          grid.querySelectorAll('.work-item').forEach((el, i) => {
+            el.classList.toggle('is-hidden', !expanded && i >= BATCH);
+          });
+          label.textContent = expanded ? 'Show less' : 'Load more';
+          btn.classList.toggle('is-open', expanded);
+          count.textContent = expanded
+            ? `Showing all ${WORK_PHOTOS.length} projects`
+            : `Showing ${BATCH} of ${WORK_PHOTOS.length} projects`;
+          if (!expanded) document.getElementById('work').scrollIntoView({ block: 'start' });
+        });
+      })();
 
       // Lightbox
       const lb    = document.getElementById('lightbox');
