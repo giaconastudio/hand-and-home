@@ -18,14 +18,19 @@
       --ink-muted:  #6A7682;
       --bg:         #FFFFFF;
       --bg-alt:     #F4F7F9;
-      --bg-deep:    #0E1418;
+      --bg-deep:    #0D1930;
       --border:     #E3E8EC;
       --border-mid: #CBD3DA;
-      --blue:       #1463C4;
-      --blue-dark:  #0E4894;
-      --blue-soft:  #E8F1FC;
-      --amber:      #F26F21;
-      --amber-dark: #D85A10;
+      /* Brand: navy + gold, pulled from the badge logo */
+      --navy:       #16274B;
+      --navy-mid:   #1E3462;
+      --navy-dark:  #0D1930;
+      --navy-soft:  #EDF1F8;
+      --gold:       #C9A063;
+      --gold-light: #E2C68E;
+      --gold-dark:  #A8833E;
+      /* Darker gold that still passes contrast as text on white */
+      --gold-text:  #8A6A2F;
       --green:      #16A34A;
       --shadow-sm:  0 1px 2px rgba(14,20,24,0.06), 0 2px 8px rgba(14,20,24,0.04);
       --shadow-md:  0 2px 4px rgba(14,20,24,0.06), 0 8px 24px rgba(14,20,24,0.08);
@@ -59,7 +64,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: var(--gold-text);
       margin-bottom: 1rem;
     }
 
@@ -103,18 +108,20 @@
 
     .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+    /* Gold is light, so it carries navy text rather than white */
     .btn-primary {
-      background: var(--amber);
-      color: #fff;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
       box-shadow: var(--shadow-sm);
     }
-    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
     .btn-dark {
-      background: var(--ink);
+      background: var(--navy);
       color: #fff;
     }
-    .btn-dark:hover { background: #1C262E; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-dark:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
     .btn-ghost {
       background: rgba(255,255,255,0.08);
@@ -164,17 +171,27 @@
       flex-shrink: 0;
     }
 
+    /* Badge logo. Falls back to a navy monogram tile if the file is missing. */
+    .nav-logo-img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+
     .nav-logo-mark {
-      width: 34px; height: 34px;
-      border-radius: 8px;
-      background: var(--ink);
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
-
-    .nav-logo-mark svg { width: 19px; height: 19px; stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     .nav-links {
       display: flex;
@@ -193,7 +210,7 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover { color: var(--navy); }
 
     .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
 
@@ -209,8 +226,8 @@
       transition: color 0.2s;
     }
 
-    .nav-phone svg { width: 17px; height: 17px; stroke: var(--blue); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .nav-phone:hover { color: var(--blue); }
+    .nav-phone svg { width: 17px; height: 17px; stroke: var(--navy); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-phone:hover { color: var(--navy); }
 
     .nav-actions .btn { padding: 0.7rem 1.3rem; font-size: 0.88rem; }
 
@@ -274,9 +291,9 @@
       align-items: center;
       padding: 9rem 0 5rem;
       background:
-        radial-gradient(1100px 520px at 78% 12%, rgba(20,99,196,0.30), transparent 62%),
-        radial-gradient(760px 460px at 8% 88%, rgba(242,111,33,0.18), transparent 60%),
-        linear-gradient(158deg, #101C26 0%, #0E1418 58%, #0A0E11 100%);
+        radial-gradient(1100px 520px at 78% 12%, rgba(30,52,98,0.65), transparent 62%),
+        radial-gradient(760px 460px at 8% 88%, rgba(201,160,99,0.16), transparent 60%),
+        linear-gradient(158deg, #1B2E56 0%, #16274B 55%, #0B1526 100%);
       overflow: hidden;
     }
 
@@ -341,7 +358,7 @@
     }
 
     .hero h1 .accent {
-      background: linear-gradient(96deg, #F79A5B 0%, #F26F21 100%);
+      background: linear-gradient(96deg, #E2C68E 0%, #C9A063 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -387,7 +404,7 @@
 
     .trust-item svg {
       width: 19px; height: 19px;
-      stroke: #4ADE80;
+      stroke: var(--gold);
       stroke-width: 2.2;
       fill: none;
       stroke-linecap: round;
@@ -449,8 +466,8 @@
 
     .quick-form input:focus,
     .quick-form select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px var(--blue-soft);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px var(--navy-soft);
     }
 
     .quick-form .btn { width: 100%; padding: 1rem; margin-top: 0.15rem; }
@@ -501,7 +518,7 @@
       flex-shrink: 0;
     }
 
-    .tb-icon svg { width: 20px; height: 20px; stroke: var(--blue); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .tb-icon svg { width: 20px; height: 20px; stroke: var(--navy); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     .tb-text strong { display: block; font-size: 0.93rem; font-weight: 700; letter-spacing: -0.01em; }
     .tb-text span { font-size: 0.8rem; color: var(--ink-muted); }
@@ -532,14 +549,14 @@
     .svc-icon {
       width: 48px; height: 48px;
       border-radius: 11px;
-      background: var(--blue-soft);
+      background: var(--navy-soft);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 1.35rem;
     }
 
-    .svc-icon svg { width: 24px; height: 24px; stroke: var(--blue); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .svc-icon svg { width: 24px; height: 24px; stroke: var(--navy); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     .svc h3 {
       font-size: 1.15rem;
@@ -574,7 +591,7 @@
       color: var(--ink-muted);
     }
 
-    .services-note a { color: var(--blue); font-weight: 600; text-decoration: none; }
+    .services-note a { color: var(--navy); font-weight: 600; text-decoration: none; }
     .services-note a:hover { text-decoration: underline; }
 
     /* ─── PROCESS ─── */
@@ -598,8 +615,8 @@
     .step-num {
       width: 40px; height: 40px;
       border-radius: 10px;
-      background: var(--ink);
-      color: #fff;
+      background: var(--navy);
+      color: var(--gold);
       font-size: 1rem;
       font-weight: 800;
       display: flex;
@@ -636,7 +653,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .stat-n .unit { color: var(--amber); }
+    .stat-n .unit { color: var(--gold); }
 
     .stat-label {
       font-size: 0.85rem;
@@ -663,7 +680,7 @@
     }
 
     .stars { display: flex; gap: 2px; margin-bottom: 1.1rem; }
-    .stars svg { width: 17px; height: 17px; fill: #F5A623; stroke: none; }
+    .stars svg { width: 17px; height: 17px; fill: var(--gold); stroke: none; }
 
     .review p {
       font-size: 0.95rem;
@@ -678,8 +695,8 @@
     .reviewer-av {
       width: 40px; height: 40px;
       border-radius: 50%;
-      background: var(--blue-soft);
-      color: var(--blue);
+      background: var(--navy-soft);
+      color: var(--navy);
       font-size: 0.88rem;
       font-weight: 700;
       display: flex;
@@ -693,7 +710,7 @@
 
     /* ─── CTA BAND ─── */
     .cta-band {
-      background: linear-gradient(122deg, var(--blue-dark) 0%, var(--blue) 100%);
+      background: linear-gradient(122deg, var(--navy-dark) 0%, var(--navy) 100%);
       padding: 4.5rem 0;
       position: relative;
       overflow: hidden;
@@ -733,7 +750,7 @@
 
     .cta-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; flex-shrink: 0; }
 
-    .btn-white { background: #fff; color: var(--blue-dark); }
+    .btn-white { background: #fff; color: var(--navy-dark); }
     .btn-white:hover { background: #F0F5FB; transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
     /* ─── CONTACT ─── */
@@ -763,7 +780,7 @@
       flex-shrink: 0;
     }
 
-    .info-icon svg { width: 20px; height: 20px; stroke: var(--blue); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .info-icon svg { width: 20px; height: 20px; stroke: var(--navy); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     .info-item strong {
       display: block;
@@ -783,7 +800,7 @@
       letter-spacing: -0.01em;
     }
 
-    .info-item a:hover { color: var(--blue); }
+    .info-item a:hover { color: var(--navy); }
     .info-item .sub { display: block; font-size: 0.85rem; font-weight: 400; color: var(--ink-muted); margin-top: 0.15rem; }
 
     /* Full form card */
@@ -849,8 +866,8 @@
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px var(--blue-soft);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px var(--navy-soft);
     }
 
     .full-form .btn { width: 100%; padding: 1.05rem; font-size: 1rem; margin-top: 0.25rem; }
@@ -882,8 +899,18 @@
       margin-bottom: 1rem;
     }
 
-    .footer-logo .nav-logo-mark { background: #fff; }
-    .footer-logo .nav-logo-mark svg { stroke: var(--ink); }
+    .footer-logo-img {
+      width: 104px; height: 104px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
 
     .footer-brand p { font-size: 0.9rem; line-height: 1.75; max-width: 330px; }
 
@@ -999,9 +1026,9 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <span class="nav-logo-mark">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      </span>
+      <img src="images/logo.png" alt="Hand &amp; Home Home Services" class="nav-logo-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span class="nav-logo-mark" style="display:none;">H&amp;H</span>
       Hand &amp; Home
     </a>
     <ul class="nav-links">
@@ -1454,10 +1481,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="footer-logo">
-            <span class="nav-logo-mark">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </span>
-            Hand &amp; Home
+            <img src="images/logo.png" alt="Hand &amp; Home Home Services" class="footer-logo-img"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">Hand &amp; Home</span>
           </a>
           <p>Licensed and insured home repair and maintenance. Straight answers, fair prices, and work that holds up.</p>
         </div>
