@@ -70,6 +70,12 @@
       line-height: 1.65;
     }
 
+    /* Stop sideways drag on phones. clip, unlike hidden, does not turn body
+       into its own scroll container (which would break the scroll listeners). */
+    @supports (overflow: clip) {
+      html, body { overflow-x: clip; }
+    }
+
     /* Archivo throughout. Heavy and tight on headings: plain and sturdy,
        the way trade signage and tool packaging is set. No display faces. */
     h1, h2, h3, .display {
@@ -312,6 +318,31 @@
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    /* ─── NAV ON NAVY ───
+       Clear over the navy hero, solid navy once scrolled, so the hanging seal
+       sits on one continuous field instead of straddling a white/navy seam. */
+    nav {
+      background: transparent;
+      backdrop-filter: none;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+    }
+    nav.scrolled,
+    nav.menu-open {
+      background: rgba(22,39,75,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom-color: rgba(255,255,255,0.08);
+      box-shadow: 0 2px 16px rgba(8,14,26,0.35);
+    }
+    .nav-links a { color: rgba(255,255,255,0.82); }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-phone { color: #fff; }
+    .nav-phone svg { stroke: var(--gold); }
+    .nav-phone:hover { color: var(--gold-light); }
+    .nav-toggle { background: transparent; border-color: rgba(255,255,255,0.28); }
+    .nav-toggle span { background: #fff; }
+    /* Menu open: tuck the badge into the bar so it never hangs over the white panel */
+    nav.menu-open .nav-logo-img { width: 50px; height: 50px; margin-top: -4px; box-shadow: none; }
+
     .mobile-menu {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -319,8 +350,8 @@
       background: #fff;
       border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow-lg);
-      /* Clears the hanging badge (it reaches ~86px) with room for its shadow */
-      padding: 6.75rem 1.5rem 1.75rem;
+      /* Sits under the bar; the badge shrinks inside it while the menu is open */
+      padding: 5.5rem 1.5rem 1.75rem;
       display: none;
       flex-direction: column;
       gap: 0.25rem;
@@ -1162,6 +1193,61 @@
 
     .full-form .btn { width: 100%; padding: 1.05rem; font-size: 1rem; margin-top: 0.25rem; }
 
+    /* ─── FOLLOW ALONG ─── */
+    .social { background: var(--bg); border-top: 1px solid var(--border); }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .social-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.3rem 1.5rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--navy);
+      border-radius: var(--r);
+      color: var(--ink);
+      text-decoration: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-card:hover { border-color: var(--border-mid); border-left-color: var(--gold); box-shadow: var(--shadow-md); }
+    .social-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .social-icon {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-icon svg { width: 22px; height: 22px; }
+
+    .social-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .social-text strong { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
+    .social-text span { font-size: 0.92rem; color: var(--ink-muted); overflow-wrap: anywhere; }
+
+    .social-arrow { color: var(--gold-dark); flex-shrink: 0; display: flex; }
+    .social-arrow svg { width: 20px; height: 20px; transition: transform 0.2s ease; }
+    .social-card:hover .social-arrow svg { transform: translateX(4px); }
+
+    /* The Gmail address is one unbreakable word. A flex child's min-width
+       defaults to its content, so on narrow phones it pushed the page wide. */
+    .info-item > div { min-width: 0; }
+    .info-item a, .info-item .val { overflow-wrap: anywhere; }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--bg-deep);
@@ -1276,6 +1362,7 @@
       .steps { grid-template-columns: repeat(2, 1fr); }
       .reviews-row .review { border-left: none; padding: 0; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .social-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .footer-brand { grid-column: 1 / -1; }
     }
@@ -1781,6 +1868,35 @@
     </div>
   </section>
 
+  <!-- FOLLOW ALONG -->
+  <section class="social section" id="follow">
+    <div class="container">
+      <div class="social-grid">
+        <div class="social-intro reveal">
+          <span class="eyebrow" data-n="06">Follow Along</span>
+          <h2 class="h2">See the work as it happens</h2>
+          <p class="lede">We post finished jobs and before and afters from around Raleigh and the Triangle. Follow along to see what we are working on.</p>
+        </div>
+        <div class="social-links">
+          <a class="social-card reveal" href="https://www.instagram.com/hand.andhome" target="_blank" rel="noopener" aria-label="Hand and Home on Instagram (opens in a new tab)">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="social-text"><strong>Instagram</strong><span>@hand.andhome</span></span>
+            <span class="social-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="social-card reveal" style="transition-delay:0.08s;" href="https://www.facebook.com/profile.php?id=61592851125373" target="_blank" rel="noopener" aria-label="Hand and Home on Facebook (opens in a new tab)">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.7c0-.9.3-1.5 1.6-1.5h1.6V4.5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.1H8v3h2.5V21h3z"/></svg>
+            </span>
+            <span class="social-text"><strong>Facebook</strong><span>Hand &amp; Home Home Services</span></span>
+            <span class="social-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -1811,6 +1927,8 @@
             <li><a href="tel:+19194107748">(919) 410-7748</a></li>
             <li><a href="mailto:handandhomeservices@gmail.com">handandhomeservices@gmail.com</a></li>
             <li>Raleigh, NC</li>
+            <li><a href="https://www.instagram.com/hand.andhome" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61592851125373" target="_blank" rel="noopener">Facebook</a></li>
           </ul>
         </div>
       </div>
@@ -2065,9 +2183,12 @@
 
     // Nav shadow on scroll
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
+    const syncNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', syncNav, { passive: true });
+    // Also on load: a page restored mid-scroll must not start with a clear
+    // bar and white links sitting over the light sections
+    syncNav();
+    window.addEventListener('pageshow', syncNav);
 
     // Mobile menu
     const toggle = document.getElementById('navToggle');
@@ -2076,6 +2197,7 @@
     toggle.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       toggle.classList.toggle('open', open);
+      nav.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
     });
 
@@ -2083,6 +2205,7 @@
       a.addEventListener('click', () => {
         menu.classList.remove('open');
         toggle.classList.remove('open');
+        nav.classList.remove('menu-open');
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
