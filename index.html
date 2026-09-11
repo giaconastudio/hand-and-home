@@ -842,50 +842,59 @@
       color: rgba(255,255,255,0.6);
     }
 
-    /* ─── OUR PROMISE ─── */
-    .promise { background: var(--bg-alt); border-top: 1px solid var(--border); }
+    /* ─── REVIEWS ─── */
+    .reviews { background: var(--bg-alt); border-top: 1px solid var(--border); }
 
-    .promise-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 4.5rem;
-      align-items: start;
-    }
-
-    .promise-intro { position: sticky; top: 7rem; }
-
-    .promise-list { list-style: none; }
-
-    .promise-item {
+    /* Columns split by hairlines rather than boxed cards */
+    .reviews-row {
       display: flex;
-      gap: 1.5rem;
-      padding: 1.9rem 0;
-      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
     }
 
-    .promise-item:first-child { padding-top: 0; }
-    .promise-item:last-child  { border-bottom: none; padding-bottom: 0; }
+    .review {
+      flex: 1 1 300px;
+      max-width: 400px;
+      padding: 0 2.25rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
 
-    .promise-n {
-      font-family: 'Fraunces', serif;
-      font-size: 1.15rem;
+    .review:first-child { border-left: none; padding-left: 0; }
+    .review:last-child  { padding-right: 0; }
+
+    .stars { display: flex; gap: 3px; margin-bottom: 1.15rem; }
+    .stars svg { width: 16px; height: 16px; fill: var(--gold); stroke: none; }
+
+    .review blockquote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: 'SOFT' 0, 'WONK' 0;
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 1.58;
+      color: var(--ink);
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .review figcaption,
+    .reviewer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .reviewer strong {
+      display: block;
+      font-size: 0.97rem;
       font-weight: 600;
-      color: var(--gold-dark);
-      flex-shrink: 0;
-      padding-top: 0.15rem;
-      width: 2rem;
+      color: var(--ink);
     }
 
-    .promise-item h3 {
-      font-size: 1.32rem;
-      font-weight: 600;
-      margin-bottom: 0.45rem;
-    }
-
-    .promise-item p {
-      font-size: 1rem;
-      line-height: 1.72;
-      color: var(--ink-mid);
+    .reviewer span {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
     }
 
     /* ─── CTA BAND ─── */
@@ -1164,8 +1173,7 @@
       .hero-sub { max-width: 100%; }
       .hero-card { max-width: 480px; }
       .steps { grid-template-columns: repeat(2, 1fr); }
-      .promise-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .promise-intro { position: static; }
+      .reviews-row .review { border-left: none; padding: 0; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .footer-brand { grid-column: 1 / -1; }
@@ -1197,7 +1205,8 @@
 
     @media (max-width: 620px) {
       .steps { grid-template-columns: 1fr; }
-      .promise-item { flex-direction: column; gap: 0.5rem; }
+      .reviews-row { gap: 2.25rem; }
+      .reviews-row .review { max-width: 100%; }
       .field-row { grid-template-columns: 1fr; }
       .hero-trust { gap: 1rem 1.75rem; }
       .form-card { padding: 1.75rem 1.35rem; }
@@ -1220,7 +1229,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Our Work</a></li>
       <li><a href="#process">How It Works</a></li>
-      <li><a href="#promise">Our Promise</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
@@ -1240,7 +1249,7 @@
     <a href="#services">Services</a>
     <a href="#work">Our Work</a>
     <a href="#process">How It Works</a>
-    <a href="#promise">Our Promise</a>
+    <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
     <a href="tel:+19194107748" class="btn btn-dark">Call (919) 410-7748</a>
     <a href="#contact" class="btn btn-primary">Get a Free Estimate</a>
@@ -1503,50 +1512,14 @@
     </div>
   </div>
 
-  <!-- OUR PROMISE -->
-  <section class="promise section" id="promise">
+  <!-- REVIEWS -->
+  <section class="reviews section" id="reviews">
     <div class="container">
-      <div class="promise-grid">
-        <div class="promise-intro reveal">
-          <span class="eyebrow" data-n="04">Our Promise</span>
-          <h2 class="h2">Straight terms, before we start</h2>
-          <p class="lede">
-            Hand &amp; Home is a young business, and we would rather earn your trust with
-            plain commitments than big claims. These four hold on every job, no exceptions.
-          </p>
-        </div>
-
-        <ol class="promise-list">
-          <li class="promise-item reveal">
-            <span class="promise-n">01</span>
-            <div>
-              <h3>The quote is the price</h3>
-              <p>You get a firm, itemized number before any work begins. If the job turns out to need more, we stop and get your approval first. No invoice ever arrives larger than what you agreed to.</p>
-            </div>
-          </li>
-          <li class="promise-item reveal" style="transition-delay:0.08s;">
-            <span class="promise-n">02</span>
-            <div>
-              <h3>We show up when we said</h3>
-              <p>You get a real arrival window, not a vague half-day. If something runs long on the job before yours, you get a phone call well before we are late, not after.</p>
-            </div>
-          </li>
-          <li class="promise-item reveal" style="transition-delay:0.16s;">
-            <span class="promise-n">03</span>
-            <div>
-              <h3>We clean up properly</h3>
-              <p>Drop cloths down, dust contained, debris hauled out. The space gets left the way you would want to find it, which usually means tidier than we found it.</p>
-            </div>
-          </li>
-          <li class="promise-item reveal" style="transition-delay:0.24s;">
-            <span class="promise-n">04</span>
-            <div>
-              <h3>If it is not right, we come back</h3>
-              <p>Something not sitting right a week later? Call us and we return to fix it. No argument, no second charge for work we should have gotten right the first time.</p>
-            </div>
-          </li>
-        </ol>
+      <div class="section-head reveal">
+        <span class="eyebrow" data-n="04">Reviews</span>
+        <h2 class="h2">What neighbors are saying</h2>
       </div>
+      <div class="reviews-row" id="reviewsRow"></div>
     </div>
   </section>
 
@@ -1764,7 +1737,60 @@
       { src: 'images/work/kitchen-sink.jpg',     caption: 'Kitchen sink and faucet upgrade' },
     ];
 
+    /* ═══════════════════════════════════════════════════════════
+       REVIEWS
+
+       PLACEHOLDERS. The names and quotes below are invented. Swap
+       each one for a real customer, and delete any you have not
+       replaced yet.
+
+       To edit: change the text between the quotes. `stars` is 1-5.
+       Add or remove entries freely; the row re-flows on its own.
+       ═══════════════════════════════════════════════════════════ */
+
+    const REVIEWS = [
+      {
+        stars: 5,
+        quote: 'Replaced a section of our deck that three other guys said needed a full teardown. Saved us thousands and it looks better than the original.',
+        name:  'Sarah M.',
+        job:   'Deck repair',
+      },
+      {
+        stars: 5,
+        quote: 'Had a list of about nine small things I had been putting off for two years. Knocked out every one in an afternoon. Fair price, no mess left behind.',
+        name:  'Dave R.',
+        job:   'General repairs',
+      },
+      {
+        stars: 5,
+        quote: 'Showed up exactly when they said, quoted before touching anything, and the price did not move an inch. That alone puts them ahead of everyone else I have hired.',
+        name:  'Jenna L.',
+        job:   'Bathroom plumbing',
+      },
+    ];
+
     /* ═══════════ Nothing below here needs editing ═══════════ */
+
+    // Build the reviews row
+    (function buildReviews() {
+      const row = document.getElementById('reviewsRow');
+      if (!row) return;
+      if (REVIEWS.length === 0) { document.getElementById('reviews').remove(); return; }
+
+      const star = '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+
+      row.innerHTML = REVIEWS.map((r, i) => `
+        <figure class="review reveal"${i ? ` style="transition-delay:${(i * 0.08).toFixed(2)}s;"` : ''}>
+          <div class="stars" role="img" aria-label="${r.stars} out of 5 stars">${star.repeat(r.stars)}</div>
+          <blockquote>${r.quote}</blockquote>
+          <figcaption class="reviewer">
+            <strong>${r.name}</strong>
+            <span>${r.job}</span>
+          </figcaption>
+        </figure>`).join('');
+      // These run before the reveal observer is set up further down,
+      // so the nodes are already in the DOM when it queries for .reveal
+    })();
 
     // Build the gallery grid
     (function buildGallery() {
