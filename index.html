@@ -305,7 +305,17 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .mobile-menu .btn { margin-top: 1rem; width: 100%; }
+    /* .mobile-menu a outranks .btn-* on specificity, so the buttons lose their
+       own colour and padding. Restore both at a higher weight. */
+    .mobile-menu .btn {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 1rem 1.9rem;
+      border-bottom: none;
+    }
+
+    .mobile-menu .btn-dark    { color: #fff; }
+    .mobile-menu .btn-primary { color: var(--navy); }
 
     /* ─── HERO ─── */
     .hero {
@@ -1697,7 +1707,6 @@
           <ul>
             <li><a href="tel:+19194107748">(919) 410-7748</a></li>
             <li><a href="mailto:handandhomeservices@gmail.com">handandhomeservices@gmail.com</a></li>
-            <li>Mon–Sat, 7am–6pm</li>
             <li>Raleigh, NC</li>
           </ul>
         </div>
