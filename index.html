@@ -588,15 +588,16 @@
     /* ─── WORK GALLERY ─── */
     .work { background: var(--bg-alt); border-top: 1px solid var(--border); }
 
+    /* Two up: before/after pairs need width to stay readable */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
 
     .work-item {
       position: relative;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 2;
       border-radius: 12px;
       overflow: hidden;
       background: #fff;
@@ -1108,6 +1109,11 @@
       .section { padding: 4.5rem 0; }
       .hero { padding: 7.5rem 0 4rem; min-height: 0; }
       .trustbar-row { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      /* Before/after pairs go full width so each half stays legible */
+      .work-grid { grid-template-columns: 1fr; }
+      .lb-prev { left: 0.75rem; }
+      .lb-next { right: 0.75rem; }
+      .lb-btn { width: 42px; height: 42px; }
       .stats-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .cta-inner { flex-direction: column; align-items: flex-start; }
       .cta-actions { width: 100%; }
@@ -1348,7 +1354,7 @@
       <div class="section-head center reveal">
         <span class="eyebrow">Our Work</span>
         <h2 class="h2">Recent projects</h2>
-        <p class="lede">A look at jobs around Raleigh and the Triangle. Click any photo to view it larger.</p>
+        <p class="lede">Before and after from real jobs around Raleigh and the Triangle. Click any photo to view it full size.</p>
       </div>
       <div class="work-grid reveal" id="workGrid"></div>
     </div>
@@ -1691,9 +1697,11 @@
        ═══════════════════════════════════════════════════════════ */
 
     const WORK_PHOTOS = [
-      // { src: 'images/work/deck-rebuild.jpg',  caption: 'Deck rebuild, Cary' },
-      // { src: 'images/work/kitchen-faucet.jpg', caption: 'Faucet replacement, Raleigh' },
-      // { src: 'images/work/fence-repair.jpg',   caption: 'Fence repair, Apex' },
+      { src: 'images/work/livingroom-light.jpg', caption: 'Living room chandelier replacing a dated ceiling fan' },
+      { src: 'images/work/deck-stairs.jpg',      caption: 'Deck stair rebuild with new treads' },
+      { src: 'images/work/bedroom-light.jpg',    caption: 'Bedroom light swapped for a modern fixture' },
+      { src: 'images/work/entryway-light.jpg',   caption: 'Two story entryway lantern replacement' },
+      { src: 'images/work/kitchen-sink.jpg',     caption: 'Kitchen sink and faucet upgrade' },
     ];
 
     /* ═══════════ Nothing below here needs editing ═══════════ */
