@@ -8,6 +8,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Browser tab + home-screen icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#16274B">
+
+  <!-- Link preview when the site is texted or shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hand &amp; Home Home Services">
+  <meta property="og:title" content="Hand &amp; Home Home Services | Handyman in Raleigh, NC">
+  <meta property="og:description" content="Repairs, plumbing, electrical, carpentry and painting across Raleigh and the Triangle. Free estimates. Call (919) 410-7748.">
+  <meta property="og:url" content="https://www.handandhomeservices.com/">
+  <meta property="og:image" content="https://www.handandhomeservices.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -204,18 +221,32 @@
       flex-shrink: 0;
     }
 
-    /* Badge logo stands alone in the nav, no wordmark beside it */
+    /* The seal hangs below the bar like a stamp, so it can be large enough to
+       read without making the nav itself tall. Tucks back in once scrolled. */
+    /* align-items: flex-start is what makes it hang: centred, the image
+       would overflow upward off-screen as much as it overflows downward */
+    .nav-logo { position: relative; align-self: flex-start; align-items: flex-start; height: 48px; }
+
     .nav-logo-img {
-      width: 52px; height: 52px;
+      width: 96px; height: 96px;
       object-fit: contain;
       flex-shrink: 0;
       display: block;
-      transition: transform 0.25s ease, width 0.3s ease, height 0.3s ease;
+      margin-top: -6px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 3px;
+      box-shadow: 0 6px 18px rgba(13,25,48,0.28);
+      transition: transform 0.25s ease, width 0.3s ease, height 0.3s ease, margin 0.3s ease, box-shadow 0.3s ease;
     }
 
     .nav-logo:hover .nav-logo-img { transform: scale(1.04); }
 
-    nav.scrolled .nav-logo-img { width: 44px; height: 44px; }
+    nav.scrolled .nav-logo-img {
+      width: 58px; height: 58px;
+      margin-top: -5px;
+      box-shadow: 0 2px 8px rgba(13,25,48,0.18);
+    }
 
     .nav-links {
       display: flex;
@@ -288,7 +319,8 @@
       background: #fff;
       border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow-lg);
-      padding: 5.5rem 1.5rem 1.75rem;
+      /* Clears the hanging badge (it reaches ~86px) with room for its shadow */
+      padding: 6.75rem 1.5rem 1.75rem;
       display: none;
       flex-direction: column;
       gap: 0.25rem;
@@ -1255,6 +1287,9 @@
       .nav-toggle { display: flex; }
       nav { padding: 0.9rem 1.25rem; }
       nav.scrolled { padding: 0.8rem 1.25rem; }
+      .nav-logo { height: 42px; }
+      .nav-logo-img { width: 76px; height: 76px; margin-top: -4px; }
+      nav.scrolled .nav-logo-img { width: 50px; height: 50px; margin-top: -4px; }
       .container { padding: 0 1.25rem; }
       .section { padding: 4.5rem 0; }
       .hero { padding: 7.5rem 0 4rem; min-height: 0; }
