@@ -1398,6 +1398,9 @@
       .steps { grid-template-columns: 1fr; }
       .reviews-row { gap: 2.25rem; }
       .reviews-row .review { max-width: 100%; }
+      /* Stacked hero buttons share one column sized to the wider button,
+         so the phone button matches Get a Free Estimate exactly */
+      .hero-ctas { display: grid; grid-template-columns: minmax(0, max-content); }
       .field-row { grid-template-columns: 1fr; }
       .hero-trust { gap: 1rem 1.75rem; }
       .form-card { padding: 1.75rem 1.35rem; }
